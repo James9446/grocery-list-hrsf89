@@ -11,17 +11,28 @@ app.use(express.static(__dirname + '/../client/dist'));
 app.use(bodyParser.json());
 
 app.post('/list', function (req, res) {
-  console.log('Server received a post request', req.body.data);
-  
-  res.send()
+  console.log('Server received a post request', req.body);
+  // mongoose.methods.findItem(req.body, function (err, listmodels) {
+  //   if (err) return console.error(err);
+  //   console.log('error:', err);
+  //   if (listmodels.length) {
+  //     console.log('find has been triggered!!!!!!!!!!!!!!!!!!!', listmodels);
+  //     mongoose.methods.update(req.body, ()=>{})
+  //   }
+    
+    // res.send(JSON.stringify(repos));
+  // });
+  mongoose.methods.save(req.body);
+
+  res.send(`${req.body.description} saved to the database`);
 });
 
 app.get('/list', function (req, res) {
-  console.log('Server received a post request', req.body.data);
+  console.log('Server received a post request', req.body); 
   mongoose.methods.find(function (err, listObjects) {
     if (err) return console.error(err);
-    console.log(listObjects);
-    // res.send(JSON.stringify(listObjects))
+    // console.log(listObjects);
+    res.send(JSON.stringify(listObjects));
   });
 });
 
