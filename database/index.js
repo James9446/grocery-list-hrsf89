@@ -21,8 +21,12 @@ var listSchema = mongoose.Schema({
   var ListModel = mongoose.model('ListModel', listSchema);
 
   let methods = {
-      save: () => {},
-      find: () => {},
+      save: (callback) => {
+          listSchema
+      },
+      find: (callback) => {
+        ListModel.find(callback);
+      },
       update: () => {}
   }
 
