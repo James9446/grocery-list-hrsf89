@@ -1,4 +1,5 @@
 var express = require('express');
+const mongoose = require('./../database/index.js');
 var app = express();
 
 app.use(express.static(__dirname + '/../client/dist'));
